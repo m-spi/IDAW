@@ -2,16 +2,25 @@
   require_once("template_header.php");
   require_once("template_menu.php");
 
-  $currentPageId = 'accueil';
-  if(isset($_GET['page'])) {
+  $currentPageId = 'fr/accueil';
+  if(isset($_GET['page']))
     $currentPageId = $_GET['page'];
-  }
 
-  $map = array(
-    'accueil' => 'Accueil',
-    'cv' => 'CV',
-    'hobbies' => 'Hobbies'
-  );
+  if(substr($currentPageId, 0, 2) == 'fr'){
+    $map = array(
+      'fr/accueil' => 'Accueil',
+      'fr/cv' => 'CV',
+      'fr/hobbies' => 'Hobbies',
+      'fr/projets' => 'Mes projets'
+    );
+  }else{
+    $map = array(
+      'en/accueil' => 'Home page',
+      'en/cv' => 'CV',
+      'en/hobbies' => 'Hobbies',
+      'en/projets' => 'My projects'
+    );
+  }
 
   renderHeaderToHTML($currentPageId, $map);
   renderMenuToHTML($currentPageId, $map);
