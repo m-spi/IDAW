@@ -4,6 +4,8 @@
 
 body{
   background-color: LightGrey;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 div{
@@ -17,12 +19,21 @@ h1{
   background-color: Gray;
   color: GhostWhite;
   width: max-content;
-  padding-left: 1vw;
-  padding-right: 1vw;
+  padding: 1vw;
+  border-radius: 1vw;
 }
 
 h2{
   text-align: center;
+}
+
+a{
+  color: DeepSkyBlue;
+  padding: 5px;
+}
+
+li{
+  margin-top: 6px;
 }
 
 .text{
@@ -34,6 +45,8 @@ h2{
   width: 15%;
   min-height: 100%;
   background-color: DarkCyan;
+  border-radius: 0 1.5vw 0 0;
+
 }
 
 #page{
@@ -42,5 +55,12 @@ h2{
 }
 
 #currentpage{
-  background-color: DarkTurquoise;
+  background-color: Blue;
+  border-radius: 6px;
+}
+
+#footer{
+  background-color: Gray;
+  color: GhostWhite;
+  padding: 5px;
 }
