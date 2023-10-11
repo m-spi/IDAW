@@ -21,6 +21,7 @@ h1{
   width: max-content;
   padding: 1vw;
   border-radius: 1vw;
+  font-family: monospace;
 }
 
 h2{
@@ -70,6 +71,7 @@ li{
   height: 100%;
 }
 
+li a:hover,
 #currentpage{
   background-color: Blue;
   border-radius: 6px;
