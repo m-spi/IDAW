@@ -1,21 +1,5 @@
 <?php
-  require_once('config.php');
-  $connectionString = "mysql:host=". _MYSQL_HOST;
-
-  if(defined('_MYSQL_PORT'))
-    $connectionString .= ";port=". _MYSQL_PORT;
-
-  $connectionString .= ";dbname=" . _MYSQL_DBNAME;
-  $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8' );
-  $pdo = NULL;
-
-  try {
-    $pdo = new PDO($connectionString,_MYSQL_USER,_MYSQL_PASSWORD,$options);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  }
-  catch (PDOException $erreur) {
-    echo 'Erreur : '.$erreur->getMessage();
-  }
+  require_once('open.php');
 
   $request = $pdo->prepare("select * from users");
 
@@ -24,25 +8,56 @@
   // display them in HTML array
 
   $request->execute();
-  $res = $request->fetch(PDO::FETCH_OBJ);
+  $res = $request->fetchAll(PDO::FETCH_OBJ);
 
-  echo "<table>
-          <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Email</th>
-          </tr>
-  ";
-  foreach($res as $r){
-    echo "<tr>
-            <td>{$res[0]['id']}</td>
-            <td>{$res[0]['nom']}</td>
-            <td>{$res[0]['email']}</td>
-          </tr>
-    ";
-  }
-  echo "</table>";
+?>
 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>dbtest users</title>
+  </head>
+  <body>
+    <h1>Users</h1>
+    <hr>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Email</th>
+      </tr>
+      <?php
+        foreach($res as $r){
+          echo "<tr>
+                  <td>{$r->id}</td>
+                  <td>{$r->name}</td>
+                  <td>{$r->email}</td>
+                </tr>
+          ";}
+      ?>
+    </table>
+    <hr>
+    <form action="adduser.php" method="post">
+      <table>
+        <tr>
+          <th>Nom :</th>
+          <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+          <th>Email :</th>
+          <td><input type="text" name="email"></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><input type="submit" value="Créer utilisateur" /></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
+
+<?php
   /*** close the database connection ***/
   $pdo = null;
 ?>
