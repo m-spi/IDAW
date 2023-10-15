@@ -22,4 +22,33 @@
     <h3>Coursera - University of Colorado Boulder</h3>
     <p><b>August of 2023</b> : Mooc - Introduction to Embedded Systems Software and Development Environments.</p>
   </div>
+
+  <h2>My skills :</h2>
+  <div style="display: flex;">
+    <div class="bg-lgray" style="margin: 6px; width: 100%;">
+      <h3 style="margin-top: 0;">Assets :</h3>
+      <ul>
+        <li>Teamwork</li>
+        <li>Cooperative</li>
+        <li>Adaptable</li>
+        <li>Empathy</li>
+        <li>Open-minded</li>
+        <li>Punctual</li>
+      </ul>
+    </div>
+    <div class="bg-gray" style="margin: 6px; width: 100%;">
+      <h3 style="margin-top: 0;">Technical :</h3>
+      <ul>
+        <li>C Language</li>
+        <li>Python</li>
+        <li>Java</li>
+        <li>JavaScript</li>
+        <li>Arduino</li>
+        <li>MySQL</li>
+        <li>Linux</li>
+        <li>Git (CLI)</li>
+        <li>LibreOffice</li>
+      </ul>
+    </div>
+  </div>
 </div>
