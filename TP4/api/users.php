@@ -28,6 +28,7 @@
       }
 
       else{
+        echo 'Veuillez envoyer un nom et une adresse mail valide.';
         http_response_code(400);
       }
     }catch(ErrorException $err){
