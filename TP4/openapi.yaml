@@ -1,0 +1,73 @@
+openapi: 3.0.3
+info:
+  title: DBTest Users API
+  description: |-
+    Documentation for the users API of the dbtest database.
+  version: 1.0.0
+servers:
+  - url: https://localhost/api/
+tags:
+  - name: users
+    description: Operations about user
+paths:
+  /tp4/users.php:
+    get:
+      tags:
+        - users
+      summary: Get users list.
+      description: Return the list of users in JSON format.
+      operationId: usersGet
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfUsers'
+    post:
+      tags:
+        - users
+      summary: Add a new user.
+      description: Add a new user.
+      operationId: usersPost
+      requestBody:
+        description: Send a json to create user.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Successfully created user 15
+        '400':
+          description: Wrong parameters
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    User:
+      required:
+        - name
+        - email
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 15
+        name:
+          type: string
+          example: mister
+        email:
+          type: string
+          example: mister@free.fr
+    ArrayOfUsers:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'

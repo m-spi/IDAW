@@ -4,5 +4,5 @@
   define('_MYSQL_DBNAME','dbtest');
   define('_MYSQL_USER','root');
   define('_MYSQL_PASSWORD','root');
-  define('_API_URL','/TP4/api/users.php');
+  define('_API_URL','localhost/~spinelli/TP4/api/users.php');
 ?>
