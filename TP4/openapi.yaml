@@ -10,7 +10,7 @@ tags:
   - name: users
     description: Operations about user
 paths:
-  /tp4/users.php:
+  /tp4/api/index.php:
     get:
       tags:
         - users
@@ -23,7 +23,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ArrayOfUsers'
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 15
+                    name:
+                      type: string
+                      example: mister
+                    email:
+                      type: string
+                      example: mister@free.fr
     post:
       tags:
         - users
@@ -49,6 +61,66 @@ paths:
           description: Wrong parameters
         '500':
           description: Internal server error
+          
+  /tp4/api/index.php/{id}:
+    put:
+      tags:
+        - users
+      summary: Update an user.
+      description: Change the name and email of an user.
+      operationId: usersPut
+      requestBody:
+        description: Send a json to update user.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      parameters:
+        - name: id
+          in: path
+          description: ID of the user.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '202':
+          description: Successfully updated
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Successfully updated user 15
+        '400':
+          description: Wrong parameters OR missing parameters OR wrong Content-Type in request header.
+        '500':
+          description: Internal server error.
+    delete:
+      tags:
+        - users
+      summary: Delete an user.
+      operationId: usersDelete
+      parameters:
+        - name: id
+          in: path
+          description: ID of the user.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '202':
+          description: Successfully deleted
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Successfully deleted user 15
+        '400':
+          description: No user with this id.
+        '500':
+          description: Internal server error.
 components:
   schemas:
     User:
@@ -57,17 +129,9 @@ components:
         - email
       type: object
       properties:
-        id:
-          type: integer
-          format: int32
-          example: 15
         name:
           type: string
           example: mister
         email:
           type: string
           example: mister@free.fr
-    ArrayOfUsers:
-      type: array
-      items:
-        $ref: '#/components/schemas/User'
